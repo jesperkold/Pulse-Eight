@@ -311,6 +311,7 @@ namespace P8PLATFORM
     {
       CLockObject lock(m_mutex);
       ++m_iWaitingThreads;
+      printf("m_iWaitingThreads %i\n", m_iWaitingThreads);
 
       m_wait_mutex.Lock();
       bool bReturn = m_condition.Wait(m_wait_mutex, m_bSignaled);
@@ -324,6 +325,7 @@ namespace P8PLATFORM
 
       CLockObject lock(m_mutex);
       ++m_iWaitingThreads;
+      printf("m_iWaitingThreads %i\n", m_iWaitingThreads);
       m_wait_mutex.Lock();
       bool bReturn = m_condition.Wait(m_wait_mutex, m_bSignaled, iTimeout);
       return ResetAndReturn() && bReturn;
