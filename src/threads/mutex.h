@@ -348,7 +348,7 @@ namespace P8PLATFORM
   private:
     void Set(bool bBroadcast = false)
     {
-      CLockObject lock(m_mutex);
+      CLockObject lock(m_wait_mutex);
       m_bSignaled  = true;
       m_bBroadcast = bBroadcast;
     }
