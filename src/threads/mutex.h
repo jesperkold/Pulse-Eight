@@ -357,6 +357,7 @@ namespace P8PLATFORM
     {
       bool bReturn(m_bSignaled);
       --m_iWaitingThreads;
+      printf("ResetAndReturn bReturn %i m_iWaitingThreads %i m_bBroadcast %i m_bAutoReset %i\n", bReturn, m_iWaitingThreads, m_bBroadcast, m_bAutoReset);
       if (bReturn && (m_iWaitingThreads == 0 || !m_bBroadcast) && m_bAutoReset)
         m_bSignaled = false;
       return bReturn;
