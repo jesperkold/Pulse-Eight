@@ -298,12 +298,14 @@ namespace P8PLATFORM
     void Broadcast(void)
     {
       Set(true);
+      printf("Broadcast %p\n", this);
       m_condition.Broadcast();
     }
 
     void Signal(void)
     {
       Set(false);
+      printf("Signal %p\n", this);
       m_condition.Signal();
     }
 
@@ -311,7 +313,7 @@ namespace P8PLATFORM
     {
       CLockObject lock(m_mutex);
       ++m_iWaitingThreads;
-      printf("m_iWaitingThreads %i\n", m_iWaitingThreads);
+      printf("m_iWaitingThreads %i %p\n", m_iWaitingThreads, this);
 
       m_wait_mutex.Lock();
       bool bReturn = m_condition.Wait(m_wait_mutex, m_bSignaled);
@@ -325,7 +327,7 @@ namespace P8PLATFORM
 
       CLockObject lock(m_mutex);
       ++m_iWaitingThreads;
-      printf("m_iWaitingThreads %i\n", m_iWaitingThreads);
+      printf("m_iWaitingThreads %i %p\n", m_iWaitingThreads, this);
       m_wait_mutex.Lock();
       bool bReturn = m_condition.Wait(m_wait_mutex, m_bSignaled, iTimeout);
       return ResetAndReturn() && bReturn;
