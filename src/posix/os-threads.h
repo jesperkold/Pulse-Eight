@@ -99,21 +99,25 @@ namespace P8PLATFORM
   public:
     CConditionImpl(void)
     {
+      printf("CConditionImpl\n");
       pthread_cond_init(&m_condition, NULL);
     }
 
     virtual ~CConditionImpl(void)
     {
+      printf("~CConditionImpl\n");
       pthread_cond_destroy(&m_condition);
     }
 
     void Signal(void)
     {
+      printf("Signal\n");
       pthread_cond_signal(&m_condition);
     }
 
     void Broadcast(void)
     {
+      printf("Broadcast\n");
       pthread_cond_broadcast(&m_condition);
     }
 
